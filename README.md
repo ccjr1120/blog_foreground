@@ -1,4 +1,6 @@
 # blog_foreground
+The project is to show my blog.
+It's a simple and immersive blog foreground.
 
 ## Project setup
 ```
