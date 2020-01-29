@@ -1,12 +1,21 @@
 <template>
   <div id="app" class="fillcontain">
     <el-container class="fillcontain">
-      <el-header></el-header>
+      <el-header>
+        <el-menu default-active="home" class="el-menu-demo" mode="horizontal" router>
+          <el-menu-item index="icon">
+            <div style="width:140px">Mysterious Blog</div>
+          </el-menu-item>
+          <el-menu-item index="home">Home</el-menu-item>
+          <el-menu-item index="about">About me</el-menu-item>
+          <el-menu-item index="reading">Reading</el-menu-item>
+        </el-menu>
+      </el-header>
       <el-container>
         <el-aside>
           <el-row class="tac">
             <el-col>
-              <el-menu default-active="1" :default-openeds="['1']" router class="el-menu-vertical-demo">
+              <el-menu :default-openeds="['1']" router class="el-menu-vertical-demo">
                 <el-submenu index="1">
                   <template slot="title">
                     <i class="el-icon-menu"></i>
@@ -37,10 +46,10 @@ body,
   height: 100%;
 }
 .el-header {
-  background-color: #b3c0d1;
   color: #333;
   text-align: center;
   line-height: 60px;
+  /* margin-left: 180px; */
 }
 
 .el-aside {
