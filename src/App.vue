@@ -3,8 +3,8 @@
     <el-container class="fillcontain">
       <el-header>
         <el-menu default-active="home" class="el-menu-demo" mode="horizontal" router>
-          <el-menu-item index="icon">
-            <div style="width:140px">Mysterious Blog</div>
+          <el-menu-item index="/">
+            <div style="width:140px;">Mysterious Blog</div>
           </el-menu-item>
           <el-menu-item index="home">Home</el-menu-item>
           <el-menu-item index="about">About me</el-menu-item>
@@ -30,7 +30,7 @@
             </el-col>
           </el-row>
         </el-aside>
-        <el-main>main</el-main>
+        <el-main><router-view/></el-main>
       </el-container>
     </el-container>
   </div>
