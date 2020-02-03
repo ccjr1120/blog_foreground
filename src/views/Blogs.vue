@@ -2,22 +2,28 @@
 <template>
   <div>
     <el-card
-      v-for="o in 4"
-      :key="o"
+      @click="showTheBlog"
+      v-for="blog in blogList"
+      :key="blog.label"
       shadow="hover"
       class="box-card"
       :body-style="{ padding: '0px' }"
     >
-      <div class="card-content">
+      <div slot="header">
+        <span>{{blog.title}}</span>
         <div style="padding-left:10px;">
-          <span style="font-weight:bold;text-align:center">如何去编写一个十分准确的博客标题?</span>
-          <br />
           <div style="padding-bottom:5px;padding-left:20px;">
-            <span style="font-size:14px">作者没有添加任何描述哦</span>
-            <br />
+            <span style="font-size:14px">博客内容简述...</span>
+            <el-button
+              @click="showTheBlog(blog.bid)"
+              style="padding: 10px 5px"
+              type="text"
+            >查看更多</el-button>
           </div>
         </div>
-        <div style="float:left;font-size:14px">发布于2020年01月31日15:58:32</div>
+      </div>
+      <div class="card-content">
+        <div style="float:left;font-size:14px">发布于{{blog.createDate}}</div>
         <div style="float:right;font-size:14px">
           浏览量
           <el-badge :value="2000" class="item" type="info"></el-badge>评论数
@@ -28,7 +34,35 @@
     </el-card>
   </div>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      blogList: []
+    };
+  },
+  watch: {
+    //watch router changes
+    $route(to, from) {
+      window.console.log(from);
+      this.getBlogsByCategroy(this.$route.params.name);
+    }
+  },
+  methods: {
+    getBlogsByCategroy(categoryName) {
+      this.$axios.get("common/blogList/" + categoryName).then(resp => {
+        var data = resp.data;
+        if (data.success) {
+          this.blogList = data.data;
+        }
+      });
+    },
+    showTheBlog: bid => {
+      alert(bid);
+    }
+  }
+};
+</script>
 <style>
 .box-card {
   text-align: left;
@@ -38,6 +72,9 @@
   line-height: 34px;
 }
 .card-content {
-  padding: 20px;
+  padding: 3px;
+}
+.el-card__header {
+  padding-bottom: 4px !important;
 }
 </style>

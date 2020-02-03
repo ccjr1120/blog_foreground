@@ -26,7 +26,9 @@ const routes = [
   },
   {
     path: '/blogs/category/:name',
-    component: BlogList
+    component: BlogList,
+    //Set this,The params will be pass to component 
+    props:true,
   }
 ]
 
