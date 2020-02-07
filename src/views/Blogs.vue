@@ -1,37 +1,30 @@
 
 <template>
   <div>
-    <el-card
-      @click="showTheBlog"
-      v-for="blog in blogList"
-      :key="blog.label"
-      shadow="hover"
-      class="box-card"
-      :body-style="{ padding: '0px' }"
-    >
-      <div slot="header">
-        <span>{{blog.title}}</span>
-        <div style="padding-left:10px;">
-          <div style="padding-bottom:5px;padding-left:20px;">
-            <span style="font-size:14px">博客内容简述...</span>
-            <el-button
-              @click="showTheBlog(blog.bid)"
-              style="padding: 10px 5px"
-              type="text"
-            >查看更多</el-button>
+    <div class="box-card" v-for="blog in blogList" :key="blog.label">
+      <router-link :to="'/showblog/'+blog.bid">
+        <el-card @click="showTheBlog" shadow="hover" :body-style="{ padding: '0px' }">
+          <div slot="header">
+            <span>{{blog.title}}</span>
+            <div style="padding-left:10px;">
+              <div style="padding-bottom:5px;padding-left:20px;">
+                <span style="font-size:14px">博客内容简述...</span>
+                <el-button size="small" style="padding: 10px 0px" type="text">查看更多</el-button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="card-content">
-        <div style="float:left;font-size:14px">发布于{{blog.createDate}}</div>
-        <div style="float:right;font-size:14px">
-          浏览量
-          <el-badge :value="2000" class="item" type="info"></el-badge>评论数
-          <el-badge :value="122" class="item" type="primary"></el-badge>点赞数
-          <el-badge :value="22" class="item" type="success"></el-badge>
-        </div>
-      </div>
-    </el-card>
+          <div class="card-content">
+            <div style="float:left;font-size:14px">发布于{{blog.createDate}}</div>
+            <div style="float:right;font-size:14px">
+              浏览量
+              <el-badge :value="2000" class="item" type="info"></el-badge>评论数
+              <el-badge :value="122" class="item" type="primary"></el-badge>点赞数
+              <el-badge :value="22" class="item" type="success"></el-badge>
+            </div>
+          </div>
+        </el-card>
+      </router-link>
+    </div>
   </div>
 </template>
 <script>
@@ -76,5 +69,8 @@ export default {
 }
 .el-card__header {
   padding-bottom: 4px !important;
+}
+a {
+  text-decoration: none;
 }
 </style>

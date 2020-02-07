@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const BlogList = () => import('../views/Blogs.vue');
+const Reading = () => import('../views/Reading.vue')
 
 const routes = [
   {
@@ -28,7 +29,10 @@ const routes = [
     path: '/blogs/category/:name',
     component: BlogList,
     //Set this,The params will be pass to component 
-    props:true,
+  },
+  {
+    path: '/showblog/:bid',
+    component: Reading
   }
 ]
 
